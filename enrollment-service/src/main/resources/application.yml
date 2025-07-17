@@ -29,7 +29,8 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
-
+  instance:
+    prefer-ip-address: true
 
 jwt:
   secret: vFcFcowxQmsBLJ8oX/9ZogEmxERKBnDrlTMyaz4fLLU=

@@ -1,0 +1,69 @@
+### Register instructor
+
+POST http://localhost:8080/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "firstName": "Clark",
+  "lastName": "Kent",
+  "email": "dailuplanet@example.com",
+  "password": "Planet1234",
+  "role": "USER"
+}
+
+###
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "dailuplanet@example.com",
+  "password": "Planet1234"
+}
+###
+
+### Create a Course (as Instructor)
+POST http://localhost:8080/api/v1/courses
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdXBlcm1hbkBnbWFpbC5jb20iLCJpYXQiOjE3NTI3NTI2NjEsImV4cCI6MTc1MjgzOTA2MX0.rilxrLAQX1lMv5aziCkpNK-RuESrhb0LJXTuYLJWSsk
+
+{
+  "title": "Ruby Fundamentals",
+  "description": "Learn Ruby from scratch",
+  "instructorId": 8
+}
+
+###
+### Get My Courses (as Instructor)
+GET http://localhost:8080/api/v1/courses/my-courses
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdXBlcm1hbkBnbWFpbC5jb20iLCJpYXQiOjE3NTI3NTI2NjEsImV4cCI6MTc1MjgzOTA2MX0.rilxrLAQX1lMv5aziCkpNK-RuESrhb0LJXTuYLJWSsk
+###
+
+### Approve Course (as Admin)
+PUT http://localhost:8080/api/v1/courses/8/approve
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZW1pZmFsYXNlMjI4QGdtYWlsLmNvbSIsImlhdCI6MTc1Mjc0NDY2MSwiZXhwIjoxNzUyODMxMDYxfQ.svBHB-HMfw2Q2gAdmJgS3Ev_AUcZLX6KjkkSCFt3NaA
+
+###
+
+### 2. View All Approved Courses (optional, to get a courseId)
+GET http://localhost:8080/api/v1/courses
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdXBlcm1hbkBnbWFpbC5jb20iLCJpYXQiOjE3NTI3NTI2NjEsImV4cCI6MTc1MjgzOTA2MX0.rilxrLAQX1lMv5aziCkpNK-RuESrhb0LJXTuYLJWSsk
+Accept: application/json
+
+###
+### 3. Enroll in a Course (replace <JWT> and <courseId>)
+POST http://localhost:8080/api/v1/enrollments
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6MTIsInN1YiI6ImRhaWx1cGxhbmV0QGV4YW1wbGUuY29tIiwiaWF0IjoxNzUyNzc5MzEzLCJleHAiOjE3NTI4NjU3MTN9.jV9yYMBtW4l7zpndPDTeE18nkuZ3dIbOXiSehVwW7kg
+Content-Type: application/json
+
+{
+  "courseId": 4
+}
+
+###
+### 4. View My Enrollments
+GET http://localhost:8080/api/v1/enrollments
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6MTIsInN1YiI6ImRhaWx1cGxhbmV0QGV4YW1wbGUuY29tIiwiaWF0IjoxNzUyNzc5MzEzLCJleHAiOjE3NTI4NjU3MTN9.jV9yYMBtW4l7zpndPDTeE18nkuZ3dIbOXiSehVwW7kg
+Accept: application/json
+
+
+
