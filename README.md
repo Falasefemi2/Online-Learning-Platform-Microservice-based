@@ -18,6 +18,18 @@ This project is a microservices-based online learning platform. It consists of t
 *   **Port:** 8761
 *   **Description:** A Spring Cloud Netflix Eureka server that provides service discovery for the microservices in the platform.
 
+### Course Service
+
+*   **Port:** 8082
+*   **Description:** Manages course-related operations, including creating, retrieving, updating, and deleting courses.
+*   **Database:** MySQL
+*   **API Endpoints:**
+    *   `POST /api/v1/courses`: Create a new course.
+    *   `GET /api/v1/courses/{id}`: Retrieve a course by ID.
+    *   `GET /api/v1/courses`: Retrieve all courses.
+    *   `PUT /api/v1/courses/{id}`: Update an existing course.
+    *   `DELETE /api/v1/courses/{id}`: Delete a course by ID.
+
 ## Getting Started
 
 ### Prerequisites
@@ -38,6 +50,12 @@ This project is a microservices-based online learning platform. It consists of t
     *   Update the `application.yml` file with your MySQL username and password.
     *   Run the application using `mvn spring-boot:run`.
 
+3.  **Start the Course Service:**
+    *   Navigate to the `course-service` directory.
+    *   Make sure your MySQL server is running and the database `coursedb` is created.
+    *   Update the `application.yml` file with your MySQL username and password.
+    *   Run the application using `mvn spring-boot:run`.
+
 ## API Usage
 
-You can use the included `http-request/auth.http` file to test the authentication endpoints using an appropriate REST client.
+You can use the included `http-request/auth.http` and `http-request/course.http` files to test the authentication and course endpoints using an appropriate REST client.
