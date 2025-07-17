@@ -59,11 +59,4 @@ public class EnrollmentService {
                 })
                 .toList();
     }
-
-
-    private Long extractUserIdFromJwt() {
-        // Use SecurityContextHolder and custom JwtUtil (or parse from token)
-        // TEMP: just return a mock userId or pull from claims if you added that earlier
-        return 1L;
-    }
 }
