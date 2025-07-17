@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "user-service")
 public interface UserClient {
 
-    @GetMapping("/api/v1/users/{id}")
+    @GetMapping("/api/v1/auth/users/{id}")
     UserDto getUserById(@PathVariable("id") Long id);
 
-    @GetMapping("/api/v1/user/email/{email}")
-    UserDto getUserByEmail(@PathVariable String email);
-
+    @GetMapping("/api/v1/auth/users/email/{email}")
+    UserDto getUserByEmail(@PathVariable("email") String email);
 }

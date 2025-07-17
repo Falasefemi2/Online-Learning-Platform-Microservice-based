@@ -4,6 +4,7 @@ import com.femi.userservice.config.JwtService;
 import com.femi.userservice.dto.LoginRequest;
 import com.femi.userservice.dto.LoginResponse;
 import com.femi.userservice.dto.RegisterRequest;
+import com.femi.userservice.dto.UserDto;
 import com.femi.userservice.model.Role;
 import com.femi.userservice.model.User;
 import com.femi.userservice.repository.UserRepository;
@@ -59,6 +60,28 @@ public class AuthenticationService {
                 .token(jwtToken)
                 .email(user.getEmail())
                 .role(user.getRole().name())
+                .build();
+    }
+
+    public UserDto getUserById(Long id) {
+        var user = userRepository.findById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + id));
+        return mapToUserDto(user);
+    }
+
+    public UserDto getUserByEmail(String email) {
+        var user = userRepository.findUserByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
+        return mapToUserDto(user);
+    }
+
+    private UserDto mapToUserDto(User user) {
+        return UserDto.builder()
+                .id(user.getId())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .email(user.getEmail())
+                .role(user.getRole())
                 .build();
     }
 }

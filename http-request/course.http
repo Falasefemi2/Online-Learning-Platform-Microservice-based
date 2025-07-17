@@ -3,10 +3,10 @@ POST http://localhost:8081/api/v1/auth/register
 Content-Type: application/json
 
 {
-  "firstName": "Samuel",
-  "lastName": "Instructor",
-  "email": "sam@example.com",
-  "password": "password123",
+  "firstName": "Falase",
+  "lastName": "Kemi",
+  "email": "kemi@gmail.com",
+  "password": "kemifalase123",
   "role": "INSTRUCTOR"
 }
 
@@ -17,8 +17,8 @@ POST http://localhost:8081/api/v1/auth/login
 Content-Type: application/json
 
 {
-  "email": "instructor@example.com",
-  "password": "password123"
+  "email": "femifalase228@gmail.com",
+  "password": "Falasefemi228@"
 }
 
 ###
@@ -26,22 +26,21 @@ Content-Type: application/json
 ### Create a Course (as Instructor)
 POST http://localhost:8082/api/v1/courses
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpbnN0cnVjdG9yQGV4YW1wbGUuY29tIiwiaWF0IjoxNzUyNzEzMTA1LCJleHAiOjE3NTI3OTk1MDV9.9WZjwH7Pw2HOCu3ysgn9tfiCt5oHU1tItYrQgY-ClvE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrZW1pQGdtYWlsLmNvbSIsImlhdCI6MTc1Mjc0MzkwOSwiZXhwIjoxNzUyODMwMzA5fQ.NcWnHzd6bCyNkpvwY5yTFoijaXdTdsUO8JhjV1USYQU
 
 {
-  "title": "Java Fundamentals",
-  "description": "Learn Java from scratch",
-  "instructorId": 6
+  "title": "Bootstrap Fundamentals",
+  "description": "Learn CSS,Bootstrap from scratch",
+  "instructorId": 9
 }
 
 ###
 
 ### Get My Courses (as Instructor)
 GET http://localhost:8082/api/v1/courses/my-courses
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpbnN0cnVjdG9yQGV4YW1wbGUuY29tIiwiaWF0IjoxNzUyNzEzMTA1LCJleHAiOjE3NTI3OTk1MDV9.9WZjwH7Pw2HOCu3ysgn9tfiCt5oHU1tItYrQgY-ClvE
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrZW1pQGdtYWlsLmNvbSIsImlhdCI6MTc1Mjc0MzkwOSwiZXhwIjoxNzUyODMwMzA5fQ.NcWnHzd6bCyNkpvwY5yTFoijaXdTdsUO8JhjV1USYQU
 ###
 
 ### Approve Course (as Admin)
-PUT http://localhost:8082/api/v1/courses/1/approve
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZW1pZmFsYXNlMjI4QGdtYWlsLmNvbSIsImlhdCI6MTc1MjcxMjQ0NCwiZXhwIjoxNzUyNzk4ODQ0fQ.afYoHt4ogt12DzN8ciY1tFvVyFHmiD1aCki_7Jr5McU"
+PUT http://localhost:8082/api/v1/courses/5/approve
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZW1pZmFsYXNlMjI4QGdtYWlsLmNvbSIsImlhdCI6MTc1Mjc0NDY2MSwiZXhwIjoxNzUyODMxMDYxfQ.svBHB-HMfw2Q2gAdmJgS3Ev_AUcZLX6KjkkSCFt3NaA

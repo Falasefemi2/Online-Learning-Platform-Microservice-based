@@ -99,8 +99,6 @@ public class CourseService {
                 .toList();
     }
 
-
-
     private CourseResponse mapToResponse(Course course) {
         return CourseResponse.builder()
                 .id(course.getId())
