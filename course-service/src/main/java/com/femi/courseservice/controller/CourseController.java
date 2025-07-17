@@ -31,12 +31,6 @@ public class CourseController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-//    @PreAuthorize("hasRole('ADMIN')")
-//    @PutMapping("/{id}/approve")
-//    public ResponseEntity<CourseResponse> approveCourse(@PathVariable Long id) {
-//        CourseResponse response = courseService.approveCourse(id);
-//        return ResponseEntity.ok(response);
-//    }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}/approve")
@@ -62,8 +56,16 @@ public class CourseController {
     @GetMapping("/my-courses")
     @PreAuthorize("hasRole('INSTRUCTOR')")
     public ResponseEntity<List<CourseResponse>> getMyCourses(Authentication authentication) {
-        String email = authentication.getName(); // Extracted from JWT token
+        String email = authentication.getName();
         List<CourseResponse> courses = courseService.getMyCourses(email);
         return ResponseEntity.ok(courses);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CourseResponse> getCourseById(
+            @PathVariable Long id
+    ) {
+        return ResponseEntity.ok(courseService.getCourseById(id));
+    }
+
 }

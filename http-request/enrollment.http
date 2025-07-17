@@ -1,0 +1,27 @@
+### 1. Login as a User to get JWT
+POST http://localhost:8081/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "chuka@example.com",
+  "password": "password123"
+}
+
+### 2. View All Approved Courses (optional, to get a courseId)
+GET http://localhost:8082/api/v1/courses
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdXBlcm1hbkBnbWFpbC5jb20iLCJpYXQiOjE3NTI3NTI2NjEsImV4cCI6MTc1MjgzOTA2MX0.rilxrLAQX1lMv5aziCkpNK-RuESrhb0LJXTuYLJWSsk
+Accept: application/json
+
+### 3. Enroll in a Course (replace <JWT> and <courseId>)
+POST http://localhost:8083/api/v1/enrollments
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6Mywic3ViIjoiY2h1a2FAZXhhbXBsZS5jb20iLCJpYXQiOjE3NTI3NjE1MjMsImV4cCI6MTc1Mjg0NzkyM30.yhVXoFmwpg97_jqiBzXtuWibwBI4_2BM_UbamJG6w-A
+Content-Type: application/json
+
+{
+  "courseId": 1
+}
+
+### 4. View My Enrollments
+GET http://localhost:8083/api/v1/enrollments
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6Mywic3ViIjoiY2h1a2FAZXhhbXBsZS5jb20iLCJpYXQiOjE3NTI3NjE1MjMsImV4cCI6MTc1Mjg0NzkyM30.yhVXoFmwpg97_jqiBzXtuWibwBI4_2BM_UbamJG6w-A
+Accept: application/json

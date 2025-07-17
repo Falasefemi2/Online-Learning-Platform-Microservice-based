@@ -1,6 +1,6 @@
-package com.femi.userservice.config;
+package com.femi.enrollmentservice.config;
 
-import com.femi.userservice.model.User;
+import com.femi.enrollmentservice.dto.UserDto;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -45,15 +45,6 @@ public class JwtService {
         return generateToken(new HashMap<>(), userDetails);
     }
 
-    public String generateToken(User user) {
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("userId", user.getId());
-        claims.put("role", user.getRole().name());
-
-        return generateToken(claims, user);
-    }
-
-
     private Claims extractAllClaims(String token) {
         return Jwts
                 .parser()
@@ -81,8 +72,8 @@ public class JwtService {
         return extractExpiration(token).before(new Date());
     }
 
-    public boolean isTokenValid(String token, UserDetails userDetails) {
+    public boolean isTokenValid(String token, UserDto user) {
         final String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
+        return (username.equals(user.getEmail())) && !isTokenExpired(token);
     }
 }

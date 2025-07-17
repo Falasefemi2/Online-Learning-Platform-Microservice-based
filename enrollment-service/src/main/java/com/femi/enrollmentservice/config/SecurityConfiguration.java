@@ -1,4 +1,4 @@
-package com.femi.courseservice.config;
+package com.femi.enrollmentservice.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -22,19 +22,16 @@ public class SecurityConfiguration {
     private final JwtFilter jwtFilter;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/api/v1/courses").hasRole("INSTRUCTOR")
-                        .requestMatchers(HttpMethod.GET, "/api/v1/courses/my-courses").hasRole("INSTRUCTOR")
-                        .requestMatchers(HttpMethod.PUT, "/api/v1/courses/*/approve").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/v1/courses/*").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/courses/pending").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/enrollments").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/enrollments/**").authenticated()
                         .anyRequest().authenticated()
                 )
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

@@ -110,4 +110,15 @@ public class CourseService {
                 .updatedAt(course.getUpdatedAt())
                 .build();
     }
+
+    public CourseResponse getCourseById(Long id) {
+        Course course = courseRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Course not found"));
+
+        if (!course.getStatus().equals(CourseStatus.APPROVED)) {
+            throw new RuntimeException("Course not approved yet");
+        }
+
+        return mapToResponse(course);
+    }
 }
