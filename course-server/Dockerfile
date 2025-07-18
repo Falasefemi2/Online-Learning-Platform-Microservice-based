@@ -3,7 +3,12 @@ FROM maven:3.9.6-eclipse-temurin-21 AS build
 
 WORKDIR /app
 
-COPY . .
+# Copy pom and install dependencies
+COPY pom.xml .
+RUN mvn dependency:go-offline
+
+# Copy source code
+COPY src ./src
 
 RUN mvn clean install -DskipTests
 
@@ -17,7 +22,7 @@ WORKDIR /app
 COPY --from=build /app/target/course-server-0.0.1-SNAPSHOT.jar .
 
 # Expose application port
-EXPOSE 8082
+EXPOSE 8761
 
 # Run the application
 CMD ["java", "-jar", "course-server-0.0.1-SNAPSHOT.jar"]

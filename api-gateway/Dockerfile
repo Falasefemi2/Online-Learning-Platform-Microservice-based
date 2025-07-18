@@ -4,7 +4,12 @@ FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
 
 # Copy everything to the build container
-COPY . .
+# Copy pom and install dependencies
+COPY pom.xml .
+RUN mvn dependency:go-offline
+
+# Copy source code
+COPY src ./src
 
 # Build the project and skip tests
 RUN mvn clean install -DskipTests
