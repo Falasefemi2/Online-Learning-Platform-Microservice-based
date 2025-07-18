@@ -4,11 +4,11 @@ POST http://localhost:8080/api/v1/auth/register
 Content-Type: application/json
 
 {
-  "firstName": "Clark",
-  "lastName": "Kent",
-  "email": "dailuplanet@example.com",
-  "password": "Planet1234",
-  "role": "USER"
+  "firstName": "Pluto",
+  "lastName": "Moon",
+  "email": "p@example.com",
+  "password": "Eathmoon1234",
+  "role": "INSTRUCTOR"
 }
 
 ###
@@ -16,18 +16,18 @@ POST http://localhost:8080/api/v1/auth/login
 Content-Type: application/json
 
 {
-  "email": "dailuplanet@example.com",
-  "password": "Planet1234"
+  "email": "p@example.com",
+  "password": "Eathmoon1234"
 }
 ###
 
 ### Create a Course (as Instructor)
 POST http://localhost:8080/api/v1/courses
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdXBlcm1hbkBnbWFpbC5jb20iLCJpYXQiOjE3NTI3NTI2NjEsImV4cCI6MTc1MjgzOTA2MX0.rilxrLAQX1lMv5aziCkpNK-RuESrhb0LJXTuYLJWSsk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6Mywic3ViIjoicEBleGFtcGxlLmNvbSIsImlhdCI6MTc1MjgwNDAyMiwiZXhwIjoxNzUyODkwNDIyfQ.9m9zlCLY9c9FgtixkjGH2qcaed6VIjg2K2c6MEz26uE
 
 {
-  "title": "Ruby Fundamentals",
+  "title": "Pythhon Fundamentals",
   "description": "Learn Ruby from scratch",
   "instructorId": 8
 }
@@ -52,17 +52,17 @@ Accept: application/json
 ###
 ### 3. Enroll in a Course (replace <JWT> and <courseId>)
 POST http://localhost:8080/api/v1/enrollments
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6MTIsInN1YiI6ImRhaWx1cGxhbmV0QGV4YW1wbGUuY29tIiwiaWF0IjoxNzUyNzc5MzEzLCJleHAiOjE3NTI4NjU3MTN9.jV9yYMBtW4l7zpndPDTeE18nkuZ3dIbOXiSehVwW7kg
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6Miwic3ViIjoianVwaXRlckBleGFtcGxlLmNvbSIsImlhdCI6MTc1MjgwMzQ4NiwiZXhwIjoxNzUyODg5ODg2fQ.4rlaa2kLpMImdJEfLv4STnj4vyIyNUGmC0IcFBVvIkI
 Content-Type: application/json
 
 {
-  "courseId": 4
+  "courseId": 9
 }
 
 ###
 ### 4. View My Enrollments
 GET http://localhost:8080/api/v1/enrollments
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6MTIsInN1YiI6ImRhaWx1cGxhbmV0QGV4YW1wbGUuY29tIiwiaWF0IjoxNzUyNzc5MzEzLCJleHAiOjE3NTI4NjU3MTN9.jV9yYMBtW4l7zpndPDTeE18nkuZ3dIbOXiSehVwW7kg
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6Miwic3ViIjoianVwaXRlckBleGFtcGxlLmNvbSIsImlhdCI6MTc1MjgwMzQ4NiwiZXhwIjoxNzUyODg5ODg2fQ.4rlaa2kLpMImdJEfLv4STnj4vyIyNUGmC0IcFBVvIkI
 Accept: application/json
 
 

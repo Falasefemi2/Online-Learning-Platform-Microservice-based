@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: userdb
+    ports:
+      - "3307:3306"
+    networks:
+      - backend
+
+  course-server:
+    build:
+      context: ./course-server
+    container_name: course-server
+    ports:
+      - "8761:8761"
+    networks:
+      - backend
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - course-server
+      - user-service
+      - course-service
+      - enrollment-service
+    networks:
+      - backend
+
+  user-service:
+    build:
+      context: ./user-service
+    container_name: user-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - course-server
+      - mysql
+    networks:
+      - backend
+
+  course-service:
+    build:
+      context: ./course-service
+    container_name: course-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - course-server
+      - mysql
+    networks:
+      - backend
+
+  enrollment-service:
+    build:
+      context: ./enrollment-service
+    container_name: enrollment-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      - course-server
+      - mysql
+    networks:
+      - backend
+
+networks:
+  backend:

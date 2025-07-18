@@ -5,7 +5,7 @@ spring:
   
   # MySQL Database Configuration
   datasource:
-    url: jdbc:mysql://localhost:3306/userdb
+    url: jdbc:mysql://mysql:3306/userdb?createDatabaseIfNotExist=true
     username: root
     password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -27,8 +27,10 @@ server:
 # Eureka Client Configuration
 eureka:
   client:
+    register-with-eureka: true       # ✅ Register with Eureka
+    fetch-registry: true             # ✅ Fetch service regist
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://course-server:8761/eureka
   instance:
     prefer-ip-address: true
 
