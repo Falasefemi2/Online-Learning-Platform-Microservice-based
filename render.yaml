@@ -2,7 +2,7 @@ services:
   # User Service
   - type: web
     name: user-service
-    env: java
+    env: docker
     buildCommand: |
       cd user-service
       ./mvnw clean package -DskipTests
@@ -39,7 +39,7 @@ services:
   # Course Service
   - type: web
     name: course-service
-    env: java
+    env: docker
     buildCommand: |
       cd course-service
       ./mvnw clean package -DskipTests
@@ -76,7 +76,7 @@ services:
   # Enrollment Service
   - type: web
     name: enrollment-service
-    env: java
+    env: docker
     buildCommand: |
       cd enrollment-service
       ./mvnw clean package -DskipTests
@@ -113,7 +113,7 @@ services:
   # API Gateway (Deploy this last)
   - type: web
     name: api-gateway
-    env: java
+    env: docker
     buildCommand: |
       cd api-gateway
       ./mvnw clean package -DskipTests
