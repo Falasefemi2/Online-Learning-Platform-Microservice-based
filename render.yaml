@@ -3,12 +3,6 @@ services:
   - type: web
     name: user-service
     env: docker
-    buildCommand: |
-      cd user-service
-      ./mvnw clean package -DskipTests
-    startCommand: |
-      cd user-service
-      java -jar target/*.jar
     envVars:
       - key: JAVA_OPTS
         value: -Xmx512m -Xms256m
@@ -40,12 +34,6 @@ services:
   - type: web
     name: course-service
     env: docker
-    buildCommand: |
-      cd course-service
-      ./mvnw clean package -DskipTests
-    startCommand: |
-      cd course-service
-      java -jar target/*.jar
     envVars:
       - key: JAVA_OPTS
         value: -Xmx512m -Xms256m
@@ -77,12 +65,6 @@ services:
   - type: web
     name: enrollment-service
     env: docker
-    buildCommand: |
-      cd enrollment-service
-      ./mvnw clean package -DskipTests
-    startCommand: |
-      cd enrollment-service
-      java -jar target/*.jar
     envVars:
       - key: JAVA_OPTS
         value: -Xmx512m -Xms256m
@@ -114,12 +96,6 @@ services:
   - type: web
     name: api-gateway
     env: docker
-    buildCommand: |
-      cd api-gateway
-      ./mvnw clean package -DskipTests
-    startCommand: |
-      cd api-gateway
-      java -jar target/*.jar
     envVars:
       - key: JAVA_OPTS
         value: -Xmx512m -Xms256m
