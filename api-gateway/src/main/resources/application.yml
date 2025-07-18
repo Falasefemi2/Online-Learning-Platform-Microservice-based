@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: ${PORT:8080}
 
 spring:
   application:
@@ -7,36 +7,39 @@ spring:
 
   cloud:
     gateway:
-      routes:
-        - id: user-service
-          uri: lb://user-service
-          predicates:
-            - Path=/api/v1/auth/**
-          filters:
-            - StripPrefix=0
+      server:
+        webflux:
+          routes:
+            - id: user-service
+              uri: ${USER_SERVICE_URL:http://localhost:8081}
+              predicates:
+                - Path=/api/v1/auth/**
+              filters:
+                - StripPrefix=0
 
-        - id: course-service
-          uri: lb://course-service
-          predicates:
-            - Path=/api/v1/courses/**
-          filters:
-            - StripPrefix=0
+            - id: course-service
+              uri: ${COURSE_SERVICE_URL:http://localhost:8082}
+              predicates:
+                - Path=/api/v1/courses/**
+              filters:
+                - StripPrefix=0
 
-        - id: enrollment-service
-          uri: lb://enrollment-service
-          predicates:
-            - Path=/api/v1/enrollments/**
-          filters:
-            - StripPrefix=0
+            - id: enrollment-service
+              uri: ${ENROLLMENT_SERVICE_URL:http://localhost:8083}
+              predicates:
+                - Path=/api/v1/enrollments/**
+              filters:
+                - StripPrefix=0
 
 eureka:
   client:
     service-url:
-      defaultZone: http://course-server:8761/eureka
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+    enabled: ${EUREKA_ENABLED:false}
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${random.value}
 
 logging:
   level:
-    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.gateway: ${LOG_LEVEL:INFO}

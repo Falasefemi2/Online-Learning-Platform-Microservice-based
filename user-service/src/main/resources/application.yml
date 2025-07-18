@@ -5,16 +5,16 @@ spring:
   
   # MySQL Database Configuration
   datasource:
-    url: jdbc:mysql://mysql:3306/userdb?createDatabaseIfNotExist=true
-    username: root
-    password: admin
+    url: ${DATABASE_URL:jdbc:mysql://mysql:3306/userdb?createDatabaseIfNotExist=true}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:admin}
     driver-class-name: com.mysql.cj.jdbc.Driver
   
   # JPA/Hibernate Configuration
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
+      ddl-auto: ${DDL_AUTO:update}
+    show-sql: ${SHOW_SQL:false}
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
@@ -22,18 +22,27 @@ spring:
 
 # Server Configuration
 server:
-  port: 8081
+  port: ${PORT:8081}
 
 # Eureka Client Configuration
 eureka:
   client:
-    register-with-eureka: true       # ✅ Register with Eureka
+    register-with-eureka: ${EUREKA_ENABLED:false}       # ✅ Register with Eureka
     fetch-registry: true             # ✅ Fetch service regist
     service-url:
-      defaultZone: http://course-server:8761/eureka
+      defaultZone: ${EUREKA_URL:http://course-server:8761/eureka}
   instance:
     prefer-ip-address: true
+    instance-id: ${spring.application.name}:${random.value}
 
 
 jwt:
-  secret: vFcFcowxQmsBLJ8oX/9ZogEmxERKBnDrlTMyaz4fLLU=
+  secret: ${JWT_SECRET:vFcFcowxQmsBLJ8oX/9ZogEmxERKBnDrlTMyaz4fLLU=}
+
+
+# Logging configuration
+logging:
+  level:
+    com.yourpackage: ${LOG_LEVEL:INFO}
+    org.springframework.web: WARN
+    org.hibernate.SQL: ${SQL_LOG_LEVEL:WARN}

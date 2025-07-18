@@ -4,10 +4,10 @@ POST http://localhost:8080/api/v1/auth/register
 Content-Type: application/json
 
 {
-  "firstName": "Pluto",
-  "lastName": "Moon",
-  "email": "p@example.com",
-  "password": "Eathmoon1234",
+  "firstName": "David",
+  "lastName": "Falase",
+  "email": "davidfalase@gmail.com",
+  "password": "davidfalase",
   "role": "INSTRUCTOR"
 }
 
@@ -16,47 +16,47 @@ POST http://localhost:8080/api/v1/auth/login
 Content-Type: application/json
 
 {
-  "email": "p@example.com",
-  "password": "Eathmoon1234"
+  "email": "kemitayo@gmail.com",
+  "password": "lawyertayo"
 }
 ###
 
 ### Create a Course (as Instructor)
 POST http://localhost:8080/api/v1/courses
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6Mywic3ViIjoicEBleGFtcGxlLmNvbSIsImlhdCI6MTc1MjgwNDAyMiwiZXhwIjoxNzUyODkwNDIyfQ.9m9zlCLY9c9FgtixkjGH2qcaed6VIjg2K2c6MEz26uE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6NCwic3ViIjoiZGF2aWRmYWxhc2VAZ21haWwuY29tIiwiaWF0IjoxNzUyODU1MDk5LCJleHAiOjE3NTI5NDE0OTl9.Tkpr0MFLZIvYwJ-9Y39V_ugZTJxQC5t0DguIcrdJJsI
 
 {
-  "title": "Pythhon Fundamentals",
-  "description": "Learn Ruby from scratch",
-  "instructorId": 8
+  "title": "English class",
+  "description": "Learn english from scratch",
+  "instructorId": 4
 }
 
 ###
 ### Get My Courses (as Instructor)
 GET http://localhost:8080/api/v1/courses/my-courses
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdXBlcm1hbkBnbWFpbC5jb20iLCJpYXQiOjE3NTI3NTI2NjEsImV4cCI6MTc1MjgzOTA2MX0.rilxrLAQX1lMv5aziCkpNK-RuESrhb0LJXTuYLJWSsk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6NCwic3ViIjoiZGF2aWRmYWxhc2VAZ21haWwuY29tIiwiaWF0IjoxNzUyODU1MDk5LCJleHAiOjE3NTI5NDE0OTl9.Tkpr0MFLZIvYwJ-9Y39V_ugZTJxQC5t0DguIcrdJJsI
+
 ###
 
 ### Approve Course (as Admin)
-PUT http://localhost:8080/api/v1/courses/8/approve
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZW1pZmFsYXNlMjI4QGdtYWlsLmNvbSIsImlhdCI6MTc1Mjc0NDY2MSwiZXhwIjoxNzUyODMxMDYxfQ.svBHB-HMfw2Q2gAdmJgS3Ev_AUcZLX6KjkkSCFt3NaA
-
+PUT http://localhost:8080/api/v1/courses/3/approve
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJ1c2VySWQiOjEsInN1YiI6ImZlbWlmYWxhc2UyMjhAZ21haWwuY29tIiwiaWF0IjoxNzUyODU0MzY0LCJleHAiOjE3NTI5NDA3NjR9.iYaLS0Aa_dDSYrDfRqW1r9JvHnYl_u2NPmv_eOlRLE4
 ###
 
 ### 2. View All Approved Courses (optional, to get a courseId)
 GET http://localhost:8080/api/v1/courses
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdXBlcm1hbkBnbWFpbC5jb20iLCJpYXQiOjE3NTI3NTI2NjEsImV4cCI6MTc1MjgzOTA2MX0.rilxrLAQX1lMv5aziCkpNK-RuESrhb0LJXTuYLJWSsk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6Miwic3ViIjoieXVzdWZAZ21haWwuY29tIiwiaWF0IjoxNzUyODU0MDk3LCJleHAiOjE3NTI5NDA0OTd9.rQaP5u5HXNZ8dU6CrmP9bYqftnTijcQ2Iw5t0OeJLv0
 Accept: application/json
 
 ###
 ### 3. Enroll in a Course (replace <JWT> and <courseId>)
 POST http://localhost:8080/api/v1/enrollments
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6Miwic3ViIjoianVwaXRlckBleGFtcGxlLmNvbSIsImlhdCI6MTc1MjgwMzQ4NiwiZXhwIjoxNzUyODg5ODg2fQ.4rlaa2kLpMImdJEfLv4STnj4vyIyNUGmC0IcFBVvIkI
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6Mywic3ViIjoia2VtaXRheW9AZ21haWwuY29tIiwiaWF0IjoxNzUyODU0NDcwLCJleHAiOjE3NTI5NDA4NzB9.haHhMjXiyh-OzFHSQIv3gu-TDQTeWpMO98q7e-3SwPg
 Content-Type: application/json
 
 {
-  "courseId": 9
+  "courseId": 3
 }
 
 ###

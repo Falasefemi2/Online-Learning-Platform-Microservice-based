@@ -1,0 +1,143 @@
+services:
+  # User Service
+  - type: web
+    name: user-service
+    env: java
+    buildCommand: |
+      cd user-service
+      ./mvnw clean package -DskipTests
+    startCommand: |
+      cd user-service
+      java -jar target/*.jar
+    envVars:
+      - key: JAVA_OPTS
+        value: -Xmx512m -Xms256m
+      - key: DATABASE_URL
+        fromDatabase:
+          name: shared-mysql-db
+          property: connectionString
+      - key: DB_USERNAME
+        fromDatabase:
+          name: shared-mysql-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: shared-mysql-db
+          property: password
+      - key: EUREKA_ENABLED
+        value: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SHOW_SQL
+        value: false
+      - key: DDL_AUTO
+        value: update
+      - key: LOG_LEVEL
+        value: INFO
+    healthCheckPath: /actuator/health
+
+  # Course Service
+  - type: web
+    name: course-service
+    env: java
+    buildCommand: |
+      cd course-service
+      ./mvnw clean package -DskipTests
+    startCommand: |
+      cd course-service
+      java -jar target/*.jar
+    envVars:
+      - key: JAVA_OPTS
+        value: -Xmx512m -Xms256m
+      - key: DATABASE_URL
+        fromDatabase:
+          name: shared-mysql-db
+          property: connectionString
+      - key: DB_USERNAME
+        fromDatabase:
+          name: shared-mysql-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: shared-mysql-db
+          property: password
+      - key: EUREKA_ENABLED
+        value: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SHOW_SQL
+        value: false
+      - key: DDL_AUTO
+        value: update
+      - key: LOG_LEVEL
+        value: INFO
+    healthCheckPath: /actuator/health
+
+  # Enrollment Service
+  - type: web
+    name: enrollment-service
+    env: java
+    buildCommand: |
+      cd enrollment-service
+      ./mvnw clean package -DskipTests
+    startCommand: |
+      cd enrollment-service
+      java -jar target/*.jar
+    envVars:
+      - key: JAVA_OPTS
+        value: -Xmx512m -Xms256m
+      - key: DATABASE_URL
+        fromDatabase:
+          name: shared-mysql-db
+          property: connectionString
+      - key: DB_USERNAME
+        fromDatabase:
+          name: shared-mysql-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: shared-mysql-db
+          property: password
+      - key: EUREKA_ENABLED
+        value: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SHOW_SQL
+        value: false
+      - key: DDL_AUTO
+        value: update
+      - key: LOG_LEVEL
+        value: INFO
+    healthCheckPath: /actuator/health
+
+  # API Gateway (Deploy this last)
+  - type: web
+    name: api-gateway
+    env: java
+    buildCommand: |
+      cd api-gateway
+      ./mvnw clean package -DskipTests
+    startCommand: |
+      cd api-gateway
+      java -jar target/*.jar
+    envVars:
+      - key: JAVA_OPTS
+        value: -Xmx512m -Xms256m
+      - key: USER_SERVICE_URL
+        value: https://user-service.onrender.com
+      - key: COURSE_SERVICE_URL
+        value: https://course-service.onrender.com
+      - key: ENROLLMENT_SERVICE_URL
+        value: https://enrollment-service.onrender.com
+      - key: EUREKA_ENABLED
+        value: false
+      - key: LOG_LEVEL
+        value: INFO
+    healthCheckPath: /actuator/health
+
+# Database Configuration
+databases:
+  - name: shared-mysql-db
+    databaseName: microservices_db
+    user: app_user
+    plan: starter  # or free if available
